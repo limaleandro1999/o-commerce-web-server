@@ -2,9 +2,11 @@ import * as express from 'express'
 import * as bodyParser from 'body-parser'
 import * as cors from 'cors'
 import * as mongoose from 'mongoose'
+
 import { environment } from './environment'
 import { Router } from './router'
 import { handleError } from './error.handler'
+import { Security } from '../components/security/security'
 
 export default class App {
     private app: express.Application = express();
@@ -14,11 +16,14 @@ export default class App {
             this.app.use(bodyParser.urlencoded({ extended: false}))
             this.app.use(bodyParser.json())
             this.app.use(cors())
+            this.app.use([Security.authorization.unless({ 
+                    path: [
+                        { url: '/users', methods: ['POST'] },
+                        '/users/authenticate'
+                    ]
+                })
+            ])   
             this.app.use(handleError)
-            this.app.use((req, res, next) => {
-                console.log('Recieved a request')
-                return next()
-            })   
             
             const router = new Router(this.app)
             router.configRouter()

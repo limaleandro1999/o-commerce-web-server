@@ -43,7 +43,6 @@ const userSchema = new mongoose.Schema({
     },
     cep: {
         type: String,
-        required: true,
         match: RegExp('^\\d{5}[-]\\d{3}$')
     },
     address: {
