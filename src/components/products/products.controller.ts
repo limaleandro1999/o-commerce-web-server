@@ -10,7 +10,7 @@ export class ProductController implements ControllerInterface {
         if(!req.user){
             next();
         }
-
+        
         //@ts-ignore
         const products = await Product.find({ seller: req.user.userId })
 
@@ -22,7 +22,7 @@ export class ProductController implements ControllerInterface {
             return next()
         }
 
-        const products = await Product.find({ name: /req.query.q/i })
+        const products = await Product.find({ name: new RegExp(req.query.q, 'i') })
 
         return res.status(200).json(products)
     }    

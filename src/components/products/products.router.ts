@@ -8,7 +8,8 @@ export class ProductRouter implements RouterInterface {
         const router = express.Router()
         const productController = new ProductController()
 
-        router.get('/', [productController.getProductByUserId, productController.getByProductName, productController.get])
+        router.get('/', [productController.getProductByUserId, productController.get])
+        router.get('/list', productController.getByProductName)
         router.get('/:id', productController.getById)
         router.post('/', productController.post)
         router.put('/:id', productController.put)

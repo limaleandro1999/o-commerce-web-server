@@ -19,6 +19,7 @@ export default class App {
             this.app.use([Security.authorization.unless({ 
                     path: [
                         { url: '/users', methods: ['POST'] },
+                        '/products/list',
                         '/users/authenticate'
                     ]
                 })
