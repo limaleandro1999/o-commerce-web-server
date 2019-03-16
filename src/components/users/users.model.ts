@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
     },
     cpf: {
         type: String,
-        unique: true,
+        //unique: true,
         match: RegExp('[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}')
     },
     phone: {
@@ -50,7 +50,7 @@ const userSchema = new mongoose.Schema({
     },
     cnpj: {
         type: String,
-        unique: true,
+        //unique: true,
         match: RegExp('[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}')
     },
     isBuyer: {

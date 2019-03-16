@@ -11,6 +11,7 @@ export class ProductRouter implements RouterInterface {
         router.get('/', [productController.getProductByUserId, productController.get])
         router.get('/list', productController.getByProductName)
         router.get('/:id', productController.getById)
+        router.get('product/:id', productController.getById)
         router.post('/', productController.post)
         router.put('/:id', productController.put)
         router.delete('/:id', productController.delete)

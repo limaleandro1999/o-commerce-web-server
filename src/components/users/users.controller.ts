@@ -22,6 +22,7 @@ export class UserController implements ControllerInterface{
         req.body.isBuyer = req.body.isBuyer === "true" ? true : false
         
         const user = await User.create(req.body).catch(error => {
+            console.log(error)
             return res.status(500).json(error)
         })
 

@@ -8,7 +8,7 @@ export class ProductController implements ControllerInterface {
     async getProductByUserId(req: express.Request, res: express.Response, next: express.NextFunction){
         //@ts-ignore
         if(!req.user){
-            next();
+            next()
         }
         
         //@ts-ignore

@@ -9,16 +9,21 @@ import { handleError } from './error.handler'
 import { Security } from '../components/security/security'
 
 export default class App {
-    private app: express.Application = express();
+    private app: express.Application = express()
 
     private setAppConfig = () => {
         this.initializeDb().then(() => {
             this.app.use(bodyParser.urlencoded({ extended: false}))
             this.app.use(bodyParser.json())
             this.app.use(cors())
+            this.app.use((req, res, next) => {
+                console.log(req.path)
+                next()
+            })
             this.app.use([Security.authorization.unless({ 
                     path: [
                         { url: '/users', methods: ['POST'] },
+                        /^\/products\/.*/,
                         '/products/list',
                         '/users/authenticate'
                     ]
